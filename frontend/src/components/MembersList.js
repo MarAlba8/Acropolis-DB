@@ -14,7 +14,7 @@ class MembersList extends Component {
             <th>Name</th>
             <th>Telephone</th>
             <th>Address</th>
-            <th></th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -30,23 +30,24 @@ class MembersList extends Component {
                 <td>{member.name}</td>
                 <td>{member.telephone}</td>
                 <td>{member.address}</td>
-                <td align="center"></td>
-
-                <NewMemberModal
-                  create={false}
-                  member={member}
-                  resetState={this.props.resetState}
-                />
-                <NewMemberModal
-                  create={false}
-                  see={true}
-                  member={member}
-                  resetState={this.props.resetState}
-                />
-                <ConfirmRemovalModal
-                  pk={member.pk}
-                  resetState={this.props.resetState}
-                />
+                <td align="center">
+                  <NewMemberModal
+                    create={false}
+                    member={member}
+                    resetState={this.props.resetState}
+                  />
+                  &nbsp;&nbsp;
+                  <NewMemberModal
+                    create={false}
+                    see={true}
+                    member={member}
+                    resetState={this.props.resetState}
+                  />
+                  <ConfirmRemovalModal
+                    pk={member.pk}
+                    resetState={this.props.resetState}
+                  />
+                </td>
               </tr>
             ))
           )}

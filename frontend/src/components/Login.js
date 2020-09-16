@@ -6,6 +6,7 @@ import {
     Button,
   } from 'reactstrap';
 
+
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -36,38 +37,35 @@ class Login extends Component {
 
     render() {
         return (
-            <Container>
-
-                <Container className="Login">
-                    <h2>Log In</h2>
-                    <Form className="form" onSubmit={this.handleSubmit}>
-                    <Col>
-                        <FormGroup>
-                        <Label>username</Label>
-                        <Input 
-                            name="username" 
-                            type="text" 
-                            id="username"
-                            onChange={this.handleChange}
-                            placeholder="example@email.com"
-                        />
-                        </FormGroup>
-                    </Col>
-                    <Col>
-                        <FormGroup>
-                        <Label for="Password">Password</Label>
-                        <Input
-                            name="password" 
-                            type="password" 
-                            value={this.state.password} 
-                            onChange={this.handleChange}
-                            placeholder="********"
-                        />
-                        </FormGroup>
-                    </Col>
-                    <Button>Submit</Button>
-                    </Form>
-                </Container>
+            <Container className="clearfix login-cont" style={{width: "300px"}}>
+                <h2 style={{textAlign: "center"}}>Log In</h2>
+                <Form className="form-login" onSubmit={this.handleSubmit}>
+                <Col>
+                    <FormGroup>
+                    <Label>username</Label>
+                    <Input 
+                        name="username" 
+                        type="text" 
+                        id="username"
+                        onChange={this.handleChange}
+                        placeholder="example@email.com"
+                    />
+                    </FormGroup>
+                </Col>
+                <Col>
+                    <FormGroup>
+                    <Label for="Password">Password</Label>
+                    <Input
+                        name="password" 
+                        type="password" 
+                        value={this.state.password} 
+                        onChange={this.handleChange}
+                        placeholder="********"
+                    />
+                    </FormGroup>
+                </Col>
+                <Button color="success" style={{marginLeft:"90px"}}>Submit</Button>
+                </Form>
             </Container>
         )
        

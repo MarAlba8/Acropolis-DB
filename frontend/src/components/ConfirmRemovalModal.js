@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Modal, ModalHeader, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalFooter, Container } from 'reactstrap';
 import axiosInstance from "../axiosApi";
 
 const ConfirmRemovalModal = (props) => {
@@ -19,17 +19,17 @@ const ConfirmRemovalModal = (props) => {
   };
 
   return (
-    <div>
-      <a onClick={toggle}><i className="fa fa-trash"></i></a>
+      <Container>
+        <a onClick={toggle}><i className="fa fa-trash"></i></a>
 
-      <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Do you really wanna delete this Member?</ModalHeader>
-        <ModalFooter>
-          <Button color="danger" onClick={deleteMember}>Yes</Button>
-          <Button color="secondary" onClick={toggle}>Cancel</Button>
-        </ModalFooter>
-      </Modal>
-    </div>
+        <Modal isOpen={modal} toggle={toggle}>
+          <ModalHeader toggle={toggle}>Do you really wanna delete this Member?</ModalHeader>
+          <ModalFooter>
+            <Button color="danger" onClick={deleteMember}>Yes</Button>
+            <Button color="secondary" onClick={toggle}>Cancel</Button>
+          </ModalFooter>
+        </Modal>
+      </Container>
   );
 }
 

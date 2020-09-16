@@ -48,6 +48,13 @@ class NewMemberForm extends React.Component {
   };
 
   render() {
+    var button
+    if (this.props.see) {
+      button = <Button color="success" style={{marginLeft:"190px"}}>Return</Button>;
+    } else {
+      button = <Button color="success" style={{marginLeft:"190px"}}>Send</Button>   
+    }
+
     return (
       <Form onSubmit={this.props.member ? this.editMember : this.createMember}>
         <FormGroup>
@@ -95,7 +102,7 @@ class NewMemberForm extends React.Component {
             value={this.defaultIfEmpty(this.state.dateIngress)}
           />
         </FormGroup>
-        <Button color="success">Send</Button>
+        {button}
       </Form>
     );
   }

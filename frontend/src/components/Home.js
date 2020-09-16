@@ -5,18 +5,34 @@ import axiosInstance from "../axiosApi";
 import NewMemberModal from "./NewMemberModal";
 
 class Home extends Component {
+
+  constructor() {
+    super();
+    this.handleLogout = this.handleLogout.bind(this);
+  }
+
   state = {
     members: []
   };
+
+  handleLogout(){
+    axiosInstance.post('blacklist/', {
+      "refreshToken": localStorage.getItem("refreshToken")
+    }).then(
+      localStorage.removeItem('accessToken'),
+      localStorage.removeItem('refreshToken'),
+      axiosInstance.defaults.headers['Authorization'] = null,
+      this.props.history.push("/")
+    ).catch (error => {
+      throw error;
+  })};
 
   componentDidMount() {
     this.resetState();
   }
 
   getMembers = () => {
-
     axiosInstance.get('').then(res => this.setState({ members: res.data })
-  
   ).catch (error => {
       throw error;
   })};
@@ -44,8 +60,9 @@ class Home extends Component {
               }}
               className="float-left"
               color="success"
-              style={{ minWidth: "200px" }}>
-                Return
+              style={{ minWidth: "200px" }}
+              onClick={this.handleLogout}>
+                Sign off
             </Button>
             <NewMemberModal create={true} resetState={this.resetState} />
           </Col> 
