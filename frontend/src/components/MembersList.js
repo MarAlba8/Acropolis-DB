@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Table } from "reactstrap";
 import NewMemberModal from "./NewMemberModal";
+import ConfirmRemovalModal from "./ConfirmRemovalModal";
 
 
 class MembersList extends Component {
@@ -32,17 +33,20 @@ class MembersList extends Component {
                 <td align="center"></td>
 
                 <NewMemberModal
-                    create={false}
-                    member={member}
-                    resetState={this.props.resetState}
+                  create={false}
+                  member={member}
+                  resetState={this.props.resetState}
                 />
                 <NewMemberModal
-                    create={false}
-                    see={true}
-                    member={member}
-                    resetState={this.props.resetState}
+                  create={false}
+                  see={true}
+                  member={member}
+                  resetState={this.props.resetState}
                 />
-                
+                <ConfirmRemovalModal
+                  pk={member.pk}
+                  resetState={this.props.resetState}
+                />
               </tr>
             ))
           )}

@@ -13,14 +13,6 @@ class NewMemberModal extends Component {
     }));
   };
 
-  seeDetails = () => {
-    console.log("inside see details")
-    this.toggle()
-    this.setState({
-      see: true
-    }); 
-  }
-
   render() {
     const create = this.props.create;
 
@@ -42,8 +34,7 @@ class NewMemberModal extends Component {
       );
     }else if (this.props.see){
       title = "Details Member";
-      button = <a onClick={this.seeDetails}><i className="fa fa-eye"></i></a>;
-      console.log(this.props.member.name)
+      button = <a onClick={this.toggle}><i className="fa fa-eye"></i></a>;
     }
 
     return (
