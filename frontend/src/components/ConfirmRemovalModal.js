@@ -1,36 +1,40 @@
-import React, { useState } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Button, Modal, ModalHeader, ModalFooter, Container } from 'reactstrap';
 import axiosInstance from "../axiosApi";
 
-const ConfirmRemovalModal = (props) => {
-  const {
-    pk,
-  } = props;
+class ConfirmRemovalModal extends Component {
+  state = {
+    modal: false
+  };
 
-  const [modal, setModal] = useState(false);
+  toggle = () => {
+    this.setState(previous => ({
+      modal: !previous.modal
+    }));
+  };
 
-  const toggle = () => setModal(!modal);
-
-  const deleteMember = () => {
-    axiosInstance.delete('details/' + pk).then(() => {
-      props.resetState();
-      toggle();
+  deleteMember = () => {
+    axiosInstance.delete('details/' + this.props.pk).then(() => {
+      this.props.resetState();
+      this.toggle();
     });
   };
 
-  return (
-      <Container>
-        <a onClick={toggle}><i className="fa fa-trash"></i></a>
+  render(){
+    return (
+      <Fragment>
+        <a onClick={this.toggle}><i className="fa fa-trash"></i></a>
 
-        <Modal isOpen={modal} toggle={toggle}>
-          <ModalHeader toggle={toggle}>Do you really wanna delete this Member?</ModalHeader>
+        <Modal isOpen={this.state.modal} toggle={this.toggle}>
+          <ModalHeader toggle={this.toggle}>Do you really wanna delete this Member?</ModalHeader>
           <ModalFooter>
-            <Button color="danger" onClick={deleteMember}>Yes</Button>
-            <Button color="secondary" onClick={toggle}>Cancel</Button>
+            <Button color="danger" onClick={this.deleteMember}>Yes</Button>
+            <Button color="secondary" onClick={this.toggle}>Cancel</Button>
           </ModalFooter>
         </Modal>
-      </Container>
-  );
+      </Fragment>
+    );
+  }
 }
 
 export default ConfirmRemovalModal;

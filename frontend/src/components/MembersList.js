@@ -36,7 +36,6 @@ class MembersList extends Component {
                     member={member}
                     resetState={this.props.resetState}
                   />
-                  &nbsp;&nbsp;
                   <NewMemberModal
                     create={false}
                     see={true}

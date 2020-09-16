@@ -54,7 +54,7 @@ class NewMemberModal extends Component {
         </Modal>
       </Fragment>
     );
-    }
+  }
 }
 
 export default NewMemberModal;
