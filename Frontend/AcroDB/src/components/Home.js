@@ -55,9 +55,6 @@ class Home extends Component {
         <Row>
           <Col>
             <Button 
-              onClick={() => {
-                this.props.history.push("/home")
-              }}
               className="float-left"
               color="success"
               style={{ minWidth: "200px" }}

@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Button, Modal, ModalHeader, ModalFooter, Container } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalFooter } from 'reactstrap';
 import axiosInstance from "../axiosApi";
 
 class ConfirmRemovalModal extends Component {
