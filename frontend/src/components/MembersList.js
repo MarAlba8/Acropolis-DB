@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Table } from "reactstrap";
+import NewMemberModal from "./NewMemberModal";
 
 
 class MembersList extends Component {
@@ -29,6 +30,19 @@ class MembersList extends Component {
                 <td>{member.telephone}</td>
                 <td>{member.address}</td>
                 <td align="center"></td>
+
+                <NewMemberModal
+                    create={false}
+                    member={member}
+                    resetState={this.props.resetState}
+                />
+                <NewMemberModal
+                    create={false}
+                    see={true}
+                    member={member}
+                    resetState={this.props.resetState}
+                />
+                
               </tr>
             ))
           )}

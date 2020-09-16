@@ -1,0 +1,26 @@
+
+thead {
+    background-color: white;
+    border-bottom: 3px solid black;
+    padding: 3px;
+}
+
+table {
+    width: 70%;
+    background-color: white;
+    text-align: center;
+    border: solid black 3px;
+}
+
+.createButtom{
+    position: fixed;
+}
+
+.login {
+    text-align: center;
+}
+
+#header{
+    text-align: center;
+     padding-top: 30px;
+ }

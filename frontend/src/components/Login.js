@@ -1,5 +1,10 @@
-import React, { Component } from "react";
+import React, { Component} from "react";
 import axiosInstance from "../axiosApi";
+import {
+    Container, Col, Form,
+    FormGroup, Label, Input,
+    Button,
+  } from 'reactstrap';
 
 class Login extends Component {
     constructor(props) {
@@ -8,34 +13,15 @@ class Login extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleSubmitWt = this.handleSubmit.bind(this);
     }
 
     handleChange(event) {
         this.setState({[event.target.name]: event.target.value});
     }
 
-    handleSubmitWt(event){
+    handleSubmit(event) {
         event.preventDefault();
-        console.log("inside obtain token")
         axiosInstance.post('/token/obtain/', {
-                username: this.state.username,
-                password: this.state.password
-            }).then(
-                result => {
-                    axiosInstance.defaults.headers['Authorization'] = "JWT " + result.data.access;
-                    localStorage.setItem('access_token', result.data.access);
-                    localStorage.setItem('refresh_token', result.data.refresh);
-                    console.log(result.data.access)
-                }
-        ).catch (error => {
-            throw error;
-        })
-    }
-
-    async handleSubmit(event) {
-        event.preventDefault();
-        await axiosInstance.post('/token/obtain/', {
             username: this.state.username,
             password: this.state.password
         }).then(
@@ -43,30 +29,48 @@ class Login extends Component {
                 axiosInstance.defaults.headers['Authorization'] = "JWT " + result.data.access;
                 localStorage.setItem('accessToken', result.data.access);
                 localStorage.setItem('refreshToken', result.data.refresh);
-                localStorage.setItem('saludo', "holaa");
-                alert(axiosInstance.defaults.headers['Authorization']);
+                this.props.history.push("/home");
             }
-        ).catch (error => {
-            throw error;
-        })
+        )
     }
 
     render() {
         return (
-            <div>Login
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Username:
-                        <input name="username" type="text" value={this.state.username} onChange={this.handleChange}/>
-                    </label>
-                    <label>
-                        Password:
-                        <input name="password" type="password" value={this.state.password} onChange={this.handleChange}/>
-                    </label>
-                    <input type="submit" value="Submit"/>
-                </form>
-            </div>
+            <Container>
+
+                <Container className="Login">
+                    <h2>Log In</h2>
+                    <Form className="form" onSubmit={this.handleSubmit}>
+                    <Col>
+                        <FormGroup>
+                        <Label>username</Label>
+                        <Input 
+                            name="username" 
+                            type="text" 
+                            id="username"
+                            onChange={this.handleChange}
+                            placeholder="example@email.com"
+                        />
+                        </FormGroup>
+                    </Col>
+                    <Col>
+                        <FormGroup>
+                        <Label for="Password">Password</Label>
+                        <Input
+                            name="password" 
+                            type="password" 
+                            value={this.state.password} 
+                            onChange={this.handleChange}
+                            placeholder="********"
+                        />
+                        </FormGroup>
+                    </Col>
+                    <Button>Submit</Button>
+                    </Form>
+                </Container>
+            </Container>
         )
+       
     }
 }
 export default Login;

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Col, Container, Row, Button } from "reactstrap";
 import MembersList from "./MembersList";
 import axiosInstance from "../axiosApi";
+import NewMemberModal from "./NewMemberModal";
 
 class Home extends Component {
   state = {
@@ -26,7 +27,7 @@ class Home extends Component {
 
   render() {
     return (
-      <Container style={{ marginTop: "20px" }}>
+      <Container style={{ marginTop: "20px"}}>
         <Row>
           <Col>
             <MembersList
@@ -38,13 +39,16 @@ class Home extends Component {
         <Row>
           <Col>
             <Button 
+              onClick={() => {
+                this.props.history.push("/home")
+              }}
               className="float-left"
               color="success"
               style={{ minWidth: "200px" }}>
                 Return
             </Button>
-          </Col>
-          
+            <NewMemberModal create={true} resetState={this.resetState} />
+          </Col> 
         </Row>
       </Container>
     );
