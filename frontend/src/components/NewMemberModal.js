@@ -12,7 +12,7 @@ class NewMemberModal extends Component {
       modal: !previous.modal
     }));
   };
-/*
+
   seeDetails = () => {
     console.log("inside see details")
     this.toggle()
@@ -20,7 +20,7 @@ class NewMemberModal extends Component {
       see: true
     }); 
   }
-*/
+
   render() {
     const create = this.props.create;
 
@@ -53,14 +53,12 @@ class NewMemberModal extends Component {
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}>{title}</ModalHeader>
           <ModalBody>
- 
-              <NewMemberForm
-              resetState={this.props.resetState}
-              toggle={this.toggle}
-              member={this.props.member}
-              /> 
-            
-            
+            <NewMemberForm
+            resetState={this.props.resetState}
+            toggle={this.toggle}
+            see={this.props.see}
+            member={this.props.member}
+            /> 
           </ModalBody>
         </Modal>
       </Fragment>
